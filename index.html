@@ -9,6 +9,7 @@
         .container { max-width: 600px; margin: auto; }
         h1 { color: #E62117; } /* YouTubeの赤色っぽく */
         h2 { color: #333; }
+        .notice-title { color: red; font-weight: bold; } /* 注意点の見出しだけ赤く */
         .button {
             display: inline-block;
             background-color: #0F9D58;
@@ -22,7 +23,6 @@
         }
         .button:hover { background-color: #0A8043; }
         .description { margin-top: 30px; text-align: left; line-height: 1.6; }
-        .notice { color: red; }
         img { max-width: 100%; height: auto; }
     </style>
 </head>
@@ -48,9 +48,9 @@
                 追加はこちらをクリック！
             </a>
 
-            <!-- ③ 注意点（赤字） -->
-            <h2>【注意点】</h2>
-            <p class="notice">
+            <!-- ③ 注意点 -->
+            <h2 class="notice-title">【注意点】</h2>
+            <p>
                 ・日付自動修正機能がないため、PONが誤って配信日を1年後などに設定した場合、そのまま1年後の予定として登録されます。通常は手動で修正しますが、忙しい場合は対応できないことがあります。<br>
                 ・更新は1時間に1回のため、ゲリラ配信には対応できません。<br>
                 ・取得対象はライブ配信のみであり、歌ってみたなどの動画プレミア公開は登録されません。<br>
