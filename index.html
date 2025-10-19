@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>薫衣りぃ配信予定カレンダー</title>
+    <title>薫衣りぃ配信カレンダーbot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { font-family: sans-serif; text-align: center; padding: 20px; color: #333; background-color: #f8f8f8; }
@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <h1>薫衣りぃ配信予定カレンダー</h1>
-        <p>このGoogleカレンダーを追加すると、配信予定が自動で表示されるようになります</p>
+        <p>このGoogleカレンダーを追加すると、アプリ上で配信予定を自動で表示出来るようになります</p>
 
         <a href="https://calendar.google.com/calendar/embed?src=a2539a4af3d922263853011ad3e0a7456b6fe092a2491eb6d4fa0e7eef0ae016%40group.calendar.google.com&ctz=Asia%2FTokyo" class="button" target="_blank" rel="noopener noreferrer">
             追加はこちらをクリック！
@@ -29,11 +29,21 @@
             <p>
                 1.上のボタンをクリックすると、Googleカレンダーが開きます。<br>
                 <strong>2.【PCの場合】左下の「カレンダーを追加」ボタンを押し、Googleカレンダー上で追加を選択すると登録完了。Googleカレンダーにログインしていない人はログインしてからもう一度ボタンを押してください。</strong><br>
+                
                 <strong>2.【スマホの場合】右下の小さな「＋」ボタンを押し、Googleカレンダーアプリ上で追加を選択すると登録完了。</strong><br>
 　　　　　　 </p>
              <h2>仕様</h2>
             <p>
-                一時間に一回、自動でYouTubeチャンネルをチェック、配信予定があればカレンダーに追加し、重複内容があれば自動的にスキップされます。
+                1時間に1回、自動でYouTubeチャンネルをチェック、配信予定があればカレンダーに追加し、重複内容があれば自動的にスキップされます。
+                
+                <strong>【注意点】</strong><br>
+                ・日付自動修正機能がないため、PONが誤って配信日を1年後などに設定した場合、そのまま1年後の予定として登録されてしまいます。通常は手動で修正しますが、忙しい際には対応できないことがあります。
+                
+                ・更新間隔は1時間に1回のため、ゲリラ配信には対応できません。
+                
+                ・取得対象はライブ配信のみであり、歌ってみたなどの動画プレミア公開は登録されません。
+               
+            　　
                 
                 
             </p>
