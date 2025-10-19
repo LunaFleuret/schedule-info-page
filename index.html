@@ -8,38 +8,59 @@
         body { font-family: sans-serif; text-align: center; padding: 20px; color: #333; background-color: #f8f8f8; }
         .container { max-width: 600px; margin: auto; }
         h1 { color: #E62117; } /* YouTubeの赤色っぽく */
-        .button { display: inline-block; background-color: #0F9D58; color: white; padding: 15px 25px; text-decoration: none; font-size: 18px; border-radius: 5px; font-weight: bold; margin-top: 20px; }
+        h2 { color: #333; }
+        .button {
+            display: inline-block;
+            background-color: #0F9D58;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
         .button:hover { background-color: #0A8043; }
         .description { margin-top: 30px; text-align: left; line-height: 1.6; }
-        .qr-code { margin-top: 40px; }
+        .notice { color: red; }
         img { max-width: 100%; height: auto; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>薫衣りぃ配信予定カレンダー</h1>
-        <p>このGoogleカレンダーを追加すると、アプリ上で配信予定を自動で表示出来るようになります</p>
+        <p>このGoogleカレンダーを追加すると、アプリ上で配信予定を自動で表示できます。</p>
 
         <div class="description">
+            <!-- ① 追加方法 -->
             <h2>追加方法</h2>
             <p>
-                1.下記のボタンをクリックすると、Googleカレンダーが開きます。<br>
-                <strong>2.【PCの場合】左下の「カレンダーを追加」ボタンを押し、Googleカレンダー上で追加を選択すると登録完了。Googleカレンダーにログインしていない人はログインしてからもう一度ボタンを押してください。</strong><br>
-                <strong>2.【スマホの場合】右下の小さな「＋」ボタンを押し、Googleカレンダーアプリ上で追加を選択すると登録完了。</strong><br>
-            </p>
-            <a href="https://calendar.google.com/calendar/embed?src=a2539a4af3d922263853011ad3e0a7456b6fe092a2491eb6d4fa0e7eef0ae016%40group.calendar.google.com&ctz=Asia%2FTokyo" class="button" target="_blank" rel="noopener noreferrer">
-            追加はこちらをクリック！
-            </a>
-            <h2>仕様</h2>
-            <p>
-                1時間に1回、自動でYouTubeチャンネルをチェック、配信予定があればカレンダーに追加し、重複内容があれば自動的にスキップされます。
+                1.下記のボタンをクリックすると、Googleカレンダーが開きます。<br><br>
+
+                <strong><span style="color:red;">【PCの場合】</span> 左下の「カレンダーを追加」ボタンを押し、Googleカレンダー上で追加を選択すると完了。Googleカレンダーにログインしていない人は、ログインしてからもう一度ボタンを押してください。</strong><br><br>
+
+                <strong><span style="color:red;">【スマホの場合】</span> 右下の小さな「＋」ボタンを押し、Googleカレンダーアプリ上で追加を選択すると完了。</strong><br>
             </p>
 
+            <!-- ② ボタン -->
+            <a href="https://calendar.google.com/calendar/embed?src=a2539a4af3d922263853011ad3e0a7456b6fe092a2491eb6d4fa0e7eef0ae016%40group.calendar.google.com&ctz=Asia%2FTokyo"
+               class="button" target="_blank" rel="noopener noreferrer">
+                追加はこちらをクリック！
+            </a>
+
+            <!-- ③ 注意点（赤字） -->
             <h2>【注意点】</h2>
-            <p>
-               ・日付自動修正機能がないため、PONが誤って配信日を1年後などに設定した場合、そのまま1年後の予定として登録されてしまいます。通常は手動で修正しますが、忙しい際には対応できないことがあります。<br>
-                ・更新間隔は1時間に1回のため、ゲリラ配信には対応できません。<br>
+            <p class="notice">
+                ・日付自動修正機能がないため、PONが誤って配信日を1年後などに設定した場合、そのまま1年後の予定として登録されます。通常は手動で修正しますが、忙しい場合は対応できないことがあります。<br>
+                ・更新は1時間に1回のため、ゲリラ配信には対応できません。<br>
                 ・取得対象はライブ配信のみであり、歌ってみたなどの動画プレミア公開は登録されません。<br>
+            </p>
+
+            <!-- ④ 仕様 -->
+            <h2>仕様</h2>
+            <p>
+                1時間に1回、自動でYouTubeチャンネルをチェックし、配信予定があればカレンダーに追加します。  
+                重複内容があれば自動的にスキップされます。<br>
             </p>
         </div>
     </div>
