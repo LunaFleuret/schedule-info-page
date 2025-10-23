@@ -2,67 +2,257 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>薫衣りぃ配信カレンダーbot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>薫衣りぃ配信カレンダーbot</title>
+    <meta name="description" content="薫衣りぃさんの配信予定をGoogleカレンダーで確認できる便利なツールです。">
+    <meta name="keywords" content="薫衣りぃ,配信,カレンダー,YouTube,ライブ">
+    <meta name="author" content="薫衣りぃ配信カレンダーbot">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="薫衣りぃ配信カレンダーbot">
+    <meta property="og:description" content="薫衣りぃさんの配信予定をGoogleカレンダーで確認できる便利なツールです。">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:image" content="https://your-domain.com/og-image.jpg">
+    <meta property="og:site_name" content="薫衣りぃ配信カレンダーbot">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="薫衣りぃ配信カレンダーbot">
+    <meta property="twitter:description" content="薫衣りぃさんの配信予定をGoogleカレンダーで確認できる便利なツールです。">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:image" content="https://your-domain.com/og-image.jpg">
+    
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 20px; color: #333; background-color: #f8f8f8; }
-        .container { max-width: 600px; margin: auto; }
-        h1 { color: #E62117; } /* YouTubeの赤色っぽく */
-        h2 { color: #333; }
-        .notice-title { color: red; font-weight: bold; } /* 注意点の見出しだけ赤く */
+        /* リセットCSS */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            text-align: center; 
+            padding: 20px; 
+            color: #333; 
+            background-color: #f8f8f8;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 { 
+            color: #E62117; 
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        h2 { 
+            color: #333; 
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .notice-title { 
+            color: #d32f2f; 
+            font-weight: bold; 
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #d32f2f;
+        }
+        
         .button {
             display: inline-block;
             background-color: #0F9D58;
             color: white;
-            padding: 15px 25px;
+            padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
-            margin-top: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .button:hover { background-color: #0A8043; }
-        .description { margin-top: 30px; text-align: left; line-height: 1.6; }
-        img { max-width: 100%; height: auto; }
+        
+        .button:hover { 
+            background-color: #0A8043; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .button:focus {
+            outline: 3px solid #4CAF50;
+            outline-offset: 2px;
+        }
+        
+        .description { 
+            margin-top: 30px; 
+            text-align: left; 
+            line-height: 1.8; 
+        }
+        
+        .description p {
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .pc-instructions, .mobile-instructions {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 5px;
+        }
+        
+        /* レスポンシブデザイン */
+        /* タブレット対応 */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .container {
+                max-width: 700px;
+                padding: 25px;
+            }
+            
+            .button {
+                padding: 16px 35px;
+                font-size: 18px;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .button {
+                padding: 12px 25px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        /* スクリーンリーダー対応 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>薫衣りぃ配信予定カレンダー</h1>
         <p>このGoogleカレンダーを追加すると、アプリ上で配信予定を自動で表示できます。</p>
+        
+        <!-- スクリーンリーダー用の説明 -->
+        <div class="sr-only">
+            このページでは、薫衣りぃさんの配信予定をGoogleカレンダーに追加する方法を説明しています。下記のボタンをクリックすると、Googleカレンダーが開き、カレンダーを追加できます。
+        </div>
 
-        <div class="description">
+        <main class="description">
             <!-- ① 追加方法 -->
-            <h2>追加方法</h2>
-            <p>
-                1.下記のボタンをクリックすると、Googleカレンダーが開きます。<br><br>
+            <section>
+                <h2>追加方法</h2>
+            <p>下記のボタンをクリックすると、Googleカレンダーが開きます。</p>
 
-                <strong><span style="color:red;">【PCの場合】</span> 左下の「カレンダーを追加」ボタンを押し、Googleカレンダー上で追加を選択すると完了。Googleカレンダーにログインしていない人は、ログインしてからもう一度ボタンを押してください。</strong><br><br>
+            <div class="pc-instructions">
+                <h3>【PCの場合】</h3>
+                <p>左下の「カレンダーを追加」ボタンを押し、Googleカレンダー上で追加を選択すると完了。Googleカレンダーにログインしていない人は、ログインしてからもう一度ボタンを押してください。</p>
+            </div>
 
-                <strong><span style="color:red;">【スマホの場合】</span> 右下の小さな「＋」ボタンを押し、Googleカレンダーアプリ上で追加を選択すると完了。</strong><br>
-            </p>
+            <div class="mobile-instructions">
+                <h3>【スマホの場合】</h3>
+                <p>右下の小さな「＋」ボタンを押し、Googleカレンダーアプリ上で追加を選択すると完了。</p>
+            </div>
 
             <!-- ② ボタン -->
-            <a href="https://calendar.google.com/calendar/embed?src=a2539a4af3d922263853011ad3e0a7456b6fe092a2491eb6d4fa0e7eef0ae016%40group.calendar.google.com&ctz=Asia%2FTokyo"
-               class="button" target="_blank" rel="noopener noreferrer">
+            <a href="https://calendar.google.com/calendar/render?cid=a2539a4af3d922263853011ad3e0a7456b6fe092a2491eb6d4fa0e7eef0ae016%40group.calendar.google.com"
+               class="button" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="Googleカレンダーに薫衣りぃ配信予定カレンダーを追加する">
                 追加はこちらをクリック！
             </a>
 
+            </section>
+            
             <!-- ③ 注意点 -->
-            <h2 class="notice-title">【注意点】</h2>
-            <p>
-                ・日付自動修正機能がないため、PONが誤って配信日を1年後などに設定した場合、そのまま1年後の予定として登録されます。通常は手動で修正しますが、忙しい場合は対応できないことがあります。<br>
-                ・更新は1時間に1回のため、ゲリラ配信には対応できません。<br>
-                ・取得対象はライブ配信のみであり、歌ってみたなどの動画プレミア公開は登録されません。<br>
-            </p>
+            <section>
+                <h2 class="notice-title">【注意点】</h2>
+            <div class="highlight">
+                <ul>
+                    <li>日付自動修正機能がないため、PONが誤って配信日を1年後などに設定した場合、そのまま1年後の予定として登録されます。通常は手動で修正しますが、忙しい場合は対応できないことがあります。</li>
+                    <li>更新は1時間に1回のため、ゲリラ配信には対応できません。</li>
+                    <li>取得対象はライブ配信のみであり、歌ってみたなどの動画プレミア公開は登録されません。</li>
+                </ul>
+            </div>
 
+            </section>
+            
             <!-- ④ 仕様 -->
-            <h2>仕様</h2>
-            <p>
-                1時間に1回、自動でYouTubeチャンネルをチェックし、配信予定があればカレンダーに追加します。  
-                重複内容があれば自動的にスキップされます。<br>
-            </p>
-        </div>
+            <section>
+                <h2>仕様</h2>
+                <p>1時間に1回、自動でYouTubeチャンネルをチェックし、配信予定があればカレンダーに追加します。重複内容があれば自動的にスキップされます。</p>
+            </section>
+        </main>
     </div>
 </body>
 </html>
